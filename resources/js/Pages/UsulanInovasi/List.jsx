@@ -5,6 +5,7 @@ import { Head, usePage } from '@inertiajs/react';
 export default function List({ daftarUsulanInovasi }) {
     const { auth } = usePage().props;
     console.log("auth",auth)
+    console.log("usulan inovasi",daftarUsulanInovasi)
     return (
         <AuthenticatedLayout
             user={auth?.user}

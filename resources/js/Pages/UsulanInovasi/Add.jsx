@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, useForm, usePage } from '@inertiajs/react';
+import PrimaryButton from '@/Components/PrimaryButton';
 
-export default function Add() {
+export default function Add({ kategoriList = [], wilayahList = [] }) {
     const { auth } = usePage().props;
 
     const { data, setData, post, processing, errors } = useForm({
@@ -10,7 +11,7 @@ export default function Add() {
         wilayah_id: '',
         judul: '',
         deskripsi: '',
-        status: '',
+        status: 'diajukan',
     });
 
     const handleSubmit = (e) => {
@@ -22,69 +23,71 @@ export default function Add() {
         <AuthenticatedLayout user={auth.user} header="Tambah Usulan Inovasi">
             <Head title="Tambah Usulan Inovasi" />
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                    <label className="block mb-1 font-semibold">Kategori</label>
-                    <input
-                        type="text"
-                        value={data.kategori_id}
-                        onChange={(e) => setData('kategori_id', e.target.value)}
-                        className="w-full border px-3 py-2 rounded"
-                    />
-                    {errors.kategori_id && <p className="text-red-500 text-sm">{errors.kategori_id}</p>}
+            <form onSubmit={handleSubmit}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label className="block mb-1 font-semibold">Kategori</label>
+                        <select
+                            value={data.kategori_id}
+                            onChange={(e) => setData('kategori_id', e.target.value)}
+                            className="w-full border px-3 py-2 rounded"
+                        >
+                            <option value="">Pilih Kategori</option>
+                            {kategoriList.map((kategori) => (
+                                <option key={kategori.id} value={kategori.id}>
+                                    {kategori.nama}
+                                </option>
+                            ))}
+                        </select>
+                        {errors.kategori_id && <p className="text-red-500 text-sm">{errors.kategori_id}</p>}
+                    </div>
+
+                    <div>
+                        <label className="block mb-1 font-semibold">Wilayah</label>
+                        <select
+                            value={data.wilayah_id}
+                            onChange={(e) => setData('wilayah_id', e.target.value)}
+                            className="w-full border px-3 py-2 rounded"
+                        >
+                            <option value="">Pilih Wilayah</option>
+                            {wilayahList.map((wilayah) => (
+                                <option key={wilayah.id} value={wilayah.id}>
+                                    {wilayah.nama}
+                                </option>
+                            ))}
+                        </select>
+                        {errors.wilayah_id && <p className="text-red-500 text-sm">{errors.wilayah_id}</p>}
+                    </div>
+
+                    <div>
+                        <label className="block mb-1 font-semibold">Judul</label>
+                        <input
+                            type="text"
+                            value={data.judul}
+                            onChange={(e) => setData('judul', e.target.value)}
+                            className="w-full border px-3 py-2 rounded"
+                        />
+                        {errors.judul && <p className="text-red-500 text-sm">{errors.judul}</p>}
+                    </div>
+                    <div>
+                        <label className="block mb-1 font-semibold">Deskripsi</label>
+                        <textarea
+                            value={data.deskripsi}
+                            onChange={(e) => setData('deskripsi', e.target.value)}
+                            className="w-full border px-3 py-2 rounded"
+                        ></textarea>
+                        {errors.deskripsi && <p className="text-red-500 text-sm">{errors.deskripsi}</p>}
+                    </div>
                 </div>
 
-                <div>
-                    <label className="block mb-1 font-semibold">Wilayah</label>
-                    <input
-                        type="text"
-                        value={data.wilayah_id}
-                        onChange={(e) => setData('wilayah_id', e.target.value)}
-                        className="w-full border px-3 py-2 rounded"
-                    />
-                    {errors.wilayah_id && <p className="text-red-500 text-sm">{errors.wilayah_id}</p>}
-                </div>
-
-                <div>
-                    <label className="block mb-1 font-semibold">Judul</label>
-                    <input
-                        type="text"
-                        value={data.judul}
-                        onChange={(e) => setData('judul', e.target.value)}
-                        className="w-full border px-3 py-2 rounded"
-                    />
-                    {errors.judul && <p className="text-red-500 text-sm">{errors.judul}</p>}
-                </div>
-
-                <div>
-                    <label className="block mb-1 font-semibold">Deskripsi</label>
-                    <textarea
-                        value={data.deskripsi}
-                        onChange={(e) => setData('deskripsi', e.target.value)}
-                        className="w-full border px-3 py-2 rounded"
-                    ></textarea>
-                    {errors.deskripsi && <p className="text-red-500 text-sm">{errors.deskripsi}</p>}
-                </div>
-
-                <div>
-                    <label className="block mb-1 font-semibold">Status</label>
-                    <input
-                        type="text"
-                        value={data.status}
-                        onChange={(e) => setData('status', e.target.value)}
-                        className="w-full border px-3 py-2 rounded"
-                    />
-                    {errors.status && <p className="text-red-500 text-sm">{errors.status}</p>}
-                </div>
 
                 <div className="text-right">
-                    <button
+                    <PrimaryButton
                         type="submit"
                         disabled={processing}
-                        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
                     >
                         Simpan
-                    </button>
+                    </PrimaryButton>
                 </div>
             </form>
         </AuthenticatedLayout>

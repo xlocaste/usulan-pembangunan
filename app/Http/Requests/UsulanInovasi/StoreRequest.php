@@ -26,7 +26,6 @@ class StoreRequest extends FormRequest
             'wilayah_id' => ['required', 'exists:wilayah,id'],
             'judul' => ['required', 'string', 'max:255'],
             'deskripsi' => ['required', 'string'],
-            'status' => ['required', 'in:pending,diajukan,diterima,ditolak'],
         ];
     }
 
@@ -45,9 +44,6 @@ class StoreRequest extends FormRequest
 
             'deskripsi.required' => 'Deskripsi harus diisi.',
             'deskripsi.string' => 'Deskripsi harus berupa teks.',
-
-            'status.required' => 'Status wajib diisi.',
-            'status.in' => 'Status harus salah satu dari: pending, diajukan, diterima, atau ditolak.',
         ];
     }
 }
