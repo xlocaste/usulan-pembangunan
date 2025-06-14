@@ -1,17 +1,30 @@
 import React from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head, usePage } from '@inertiajs/react';
+import { Head, usePage, router, Link } from '@inertiajs/react';
+import { FaEdit, FaTrash, FaPlus } from 'react-icons/fa';
+import PrimaryButton from '@/Components/PrimaryButton';
 
 export default function List({ daftarUsulanInovasi }) {
     const { auth } = usePage().props;
-    console.log("auth",auth)
-    console.log("usulan inovasi",daftarUsulanInovasi)
+
+    const handleDelete = (id) => {
+        if (confirm('Apakah Anda yakin ingin menghapus usulan ini?')) {
+            router.delete(route('usulan-inovasi.destroy', id));
+        }
+    };
+
     return (
-        <AuthenticatedLayout
-            user={auth?.user}
-            header="Daftar Usulan Inovasi"
-        >
+        <AuthenticatedLayout user={auth?.user} header="Daftar Usulan Inovasi">
             <Head title="Usulan Inovasi" />
+
+            <div className="mb-4 flex justify-end">
+                <Link href={route('usulan-inovasi.create')}>
+                    <PrimaryButton className="flex items-center gap-2">
+                        <FaPlus />
+                        Tambah Usulan Inovasi
+                    </PrimaryButton>
+                </Link>
+            </div>
 
             <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left border border-gray-200">
@@ -22,7 +35,7 @@ export default function List({ daftarUsulanInovasi }) {
                             <th className="px-4 py-2 border">Kategori</th>
                             <th className="px-4 py-2 border">Wilayah</th>
                             <th className="px-4 py-2 border">Status</th>
-                            <th className="px-4 py-2 border">Action</th>
+                            <th className="px-4 py-2 border text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,12 +47,27 @@ export default function List({ daftarUsulanInovasi }) {
                                     <td className="px-4 py-2 border">{item.kategori?.nama}</td>
                                     <td className="px-4 py-2 border">{item.wilayah?.nama}</td>
                                     <td className="px-4 py-2 border">{item.status}</td>
-                                    <td className="px-4 py-2 border"></td>
+                                    <td className="px-4 py-2 border text-center">
+                                        <div className="flex justify-center items-center gap-2">
+                                            <Link
+                                                href={route('usulan-inovasi.edit', item.id)}
+                                                className="text-blue-600 hover:text-blue-800"
+                                            >
+                                                <FaEdit />
+                                            </Link>
+                                            <button
+                                                onClick={() => handleDelete(item.id)}
+                                                className="text-red-600 hover:text-red-800"
+                                            >
+                                                <FaTrash />
+                                            </button>
+                                        </div>
+                                    </td>
                                 </tr>
                             ))
                         ) : (
                             <tr>
-                                <td colSpan="5" className="text-center py-4 text-gray-500">
+                                <td colSpan="6" className="text-center py-4 text-gray-500">
                                     Belum ada usulan inovasi.
                                 </td>
                             </tr>

@@ -8,6 +8,7 @@ use App\Models\KategoriUsulan;
 use App\Models\UsulanInovasi;
 use App\Models\Wilayah;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Symfony\Component\CssSelector\Node\FunctionNode;
 
@@ -63,5 +64,12 @@ class UsulanInovasiController extends Controller
             'kategoriList' => KategoriUsulan::all(),
             'wilayahList' => Wilayah::all(),
         ]);
+    }
+
+    public function destroy(UsulanInovasi $usulanInovasi)
+    {
+        $usulanInovasi->delete();
+
+        return Redirect::route('usulan-inovasi.index')->with('message', 'Data berhasil dihapus');
     }
 }
