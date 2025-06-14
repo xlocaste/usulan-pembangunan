@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -26,7 +25,7 @@ class PelaporanPembangunanSeeder extends Seeder
                 'wilayah_id' => 1,
                 'judul' => 'Saluran Drainase Tersumbat',
                 'deskripsi' => 'Saluran air di RW 02 tersumbat, menyebabkan genangan air saat hujan.',
-                'status' => 'diproses',
+                'status' => 'diterima',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -34,7 +33,7 @@ class PelaporanPembangunanSeeder extends Seeder
                 'wilayah_id' => 1,
                 'judul' => 'Lampu Jalan Mati',
                 'deskripsi' => 'Beberapa lampu jalan di sepanjang Jalan Melati tidak berfungsi.',
-                'status' => 'selesai',
+                'status' => 'ditolak',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('wilayah_id');
             $table->string('judul');
             $table->text('deskripsi');
-            $table->string('status');
+            $table->enum('status', ['diajukan', 'diterima', 'ditolak'])->default('diajukan');
             $table->timestamps();
 
             $table->foreign('kategori_id')->references('id')->on('kategori_usulan');

@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -19,7 +18,7 @@ class UsulanInovasiSeeder extends Seeder
                 'wilayah_id' => 1,
                 'judul' => 'Peningkatan Jalan Desa',
                 'deskripsi' => 'Usulan peningkatan kualitas jalan desa untuk mendukung aksesibilitas warga.',
-                'status' => 'Menunggu Verifikasi',
+                'status' => 'diajukan', // sebelumnya 'Menunggu Verifikasi'
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -28,7 +27,7 @@ class UsulanInovasiSeeder extends Seeder
                 'wilayah_id' => 1,
                 'judul' => 'Pembangunan Perpustakaan Digital',
                 'deskripsi' => 'Inovasi membangun perpustakaan digital untuk meningkatkan minat baca pelajar.',
-                'status' => 'Diterima',
+                'status' => 'diterima',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -37,7 +36,7 @@ class UsulanInovasiSeeder extends Seeder
                 'wilayah_id' => 1,
                 'judul' => 'Posyandu Pintar',
                 'deskripsi' => 'Digitalisasi data kesehatan balita di Posyandu menggunakan aplikasi mobile.',
-                'status' => 'Ditolak',
+                'status' => 'ditolak',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
