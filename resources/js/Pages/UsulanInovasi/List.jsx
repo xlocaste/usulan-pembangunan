@@ -1,8 +1,10 @@
 import React from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 
-export default function List({ auth, daftarUsulanInovasi }) {
+export default function List({ daftarUsulanInovasi }) {
+    const { auth } = usePage().props;
+    console.log("auth",auth)
     return (
         <AuthenticatedLayout
             user={auth?.user}

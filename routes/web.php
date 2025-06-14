@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
 
 Route::prefix('/usulan-inovasi')->name('usulan-inovasi.')->group(function() {
     Route::group(['middleware' => ['auth']], function() {
+        Route::get('/', [UsulanInovasiController::class, 'index'])->name('index');
         Route::get('/create', [UsulanInovasiController::class, 'create'])->name('create');
         Route::post('/', [UsulanInovasiController::class, 'store'])->name('store');
         Route::put('/{usulanInovasi}', [UsulanInovasiController::class, 'update'])->name('update');
@@ -35,7 +36,6 @@ Route::prefix('/usulan-inovasi')->name('usulan-inovasi.')->group(function() {
         Route::get('/{usulanInovasi}/detail', [UsulanInovasiController::class, 'show'])->name('show');
         Route::get('/search', [UsulanInovasiController::class, 'search'])->name('search');
     });
-    Route::get('/', [UsulanInovasiController::class, 'index'])->name('index');
 });
 
 require __DIR__.'/auth.php';
