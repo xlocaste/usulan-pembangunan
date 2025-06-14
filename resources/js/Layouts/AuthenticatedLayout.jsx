@@ -52,7 +52,7 @@ export default function AuthenticatedLayout({ header, children }) {
                     </div>
                 )}
 
-                <div className='mx-6 bg-white p-6 rounded'>{children}</div>
+                <div className='mx-6 mb-6 bg-white p-6 rounded'>{children}</div>
             </main>
         </div>
     );
