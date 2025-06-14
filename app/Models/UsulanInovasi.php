@@ -28,4 +28,16 @@ class UsulanInovasi extends Model
     {
         return $this->belongsTo(Wilayah::class, 'wilayah_id');
     }
+
+    public function verifikasi()
+    {
+        return $this->hasOne(VerifikasiUsulanInovasi::class);
+    }
+
+    protected static function booted()
+    {
+        static::created(function ($usulanInovasi) {
+            $usulanInovasi->verifikasi()->create();
+        });
+    }
 }

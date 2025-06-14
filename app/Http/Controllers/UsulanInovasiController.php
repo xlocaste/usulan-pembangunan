@@ -16,7 +16,9 @@ class UsulanInovasiController extends Controller
 {
     public function index()
     {
-        $daftarUsulanInovasi = UsulanInovasi::with('kategori', 'wilayah')->get();
+        $daftarUsulanInovasi = UsulanInovasi::with('kategori', 'wilayah')
+            ->where('status', 'diajukan')
+            ->get();
 
         return inertia('UsulanInovasi/List', [
             'daftarUsulanInovasi' => $daftarUsulanInovasi,
@@ -71,5 +73,19 @@ class UsulanInovasiController extends Controller
         $usulanInovasi->delete();
 
         return Redirect::route('usulan-inovasi.index')->with('message', 'Data berhasil dihapus');
+    }
+
+    public function approve($usulanInovasi)
+    {
+        $usulan = UsulanInovasi::findOrFail($usulanInovasi);
+        $usulan->update(['status' => 'diterima']);
+        return redirect()->back()->with('success', 'Usulan telah disetujui.');
+    }
+
+    public function reject($usulanInovasi)
+    {
+        $usulan = UsulanInovasi::findOrFail($usulanInovasi);
+        $usulan->update(['status' => 'ditolak']);
+        return redirect()->back()->with('success', 'Usulan telah ditolak.');
     }
 }

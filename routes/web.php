@@ -3,6 +3,7 @@
 use App\Http\Controllers\PelaporanPembangunanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsulanInovasiController;
+use App\Http\Controllers\VerifikasiUsulanInovasiController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -32,10 +33,25 @@ Route::prefix('/usulan-inovasi')->name('usulan-inovasi.')->group(function() {
         Route::get('/create', [UsulanInovasiController::class, 'create'])->name('create');
         Route::post('/', [UsulanInovasiController::class, 'store'])->name('store');
         Route::put('/{usulanInovasi}', [UsulanInovasiController::class, 'update'])->name('update');
+        Route::put('/{usulanInovasi}/approve', [UsulanInovasiController::class, 'approve'])->name('approve');
+        Route::put('/{usulanInovasi}/reject', [UsulanInovasiController::class, 'reject'])->name('reject');
         Route::delete('/{usulanInovasi}', [UsulanInovasiController::class, 'destroy'])->name('destroy');
         Route::get('/{usulanInovasi}/edit', [UsulanInovasiController::class, 'edit'])->name('edit');
         Route::get('/{usulanInovasi}/detail', [UsulanInovasiController::class, 'show'])->name('show');
         Route::get('/search', [UsulanInovasiController::class, 'search'])->name('search');
+    });
+});
+
+Route::prefix('/verifikasi-usulan-inovasi')->name('verifikasi-usulan-inovasi.')->group(function() {
+    Route::group(['middleware' => ['auth']], function() {
+        Route::get('/', [VerifikasiUsulanInovasiController::class, 'index'])->name('index');
+        Route::get('/create', [VerifikasiUsulanInovasiController::class, 'create'])->name('create');
+        Route::post('/', [VerifikasiUsulanInovasiController::class, 'store'])->name('store');
+        Route::put('/{verifikasiUI}', [VerifikasiUsulanInovasiController::class, 'update'])->name('update');
+        Route::delete('/{verifikasiUI}', [VerifikasiUsulanInovasiController::class, 'destroy'])->name('destroy');
+        Route::get('/{verifikasiUI}/edit', [VerifikasiUsulanInovasiController::class, 'edit'])->name('edit');
+        Route::get('/{verifikasiUI}/detail', [VerifikasiUsulanInovasiController::class, 'show'])->name('show');
+        Route::get('/search', [VerifikasiUsulanInovasiController::class, 'search'])->name('search');
     });
 });
 

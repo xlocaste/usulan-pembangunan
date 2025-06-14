@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             WilayahSeeder::class,
             UsulanInovasiSeeder::class,
             PelaporanPembangunanSeeder::class,
+            VerifikasiUsulanInovasiSeeder::class,
         ]);
     }
 }

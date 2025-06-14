@@ -23,6 +23,12 @@ export default function AuthenticatedLayout({ header, children }) {
                         Usulan Inovasi
                     </Link>
                     <Link
+                        href={route('verifikasi-usulan-inovasi.index')}
+                        className="block px-4 py-2 rounded hover:bg-gray-200"
+                    >
+                        Verifikasi Usulan Inovasi
+                    </Link>
+                    <Link
                         href={route('pelaporan-pembangunan.index')}
                         className="block px-4 py-2 rounded hover:bg-gray-200"
                     >

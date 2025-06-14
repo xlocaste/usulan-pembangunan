@@ -2,10 +2,22 @@ import React from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, usePage, router, Link } from '@inertiajs/react';
 import PrimaryButton from '@/Components/PrimaryButton';
-import { FiEdit, FiPlus, FiTrash2 } from 'react-icons/fi';
+import { FiCheck, FiEdit, FiPlus, FiTrash2, FiX } from 'react-icons/fi';
 
 export default function List({ daftarUsulanInovasi }) {
     const { auth } = usePage().props;
+
+    const handleApprove = (id) => {
+        if (confirm('Setujui usulan ini?')) {
+            router.put(route('usulan-inovasi.approve', id));
+        }
+    };
+
+    const handleReject = (id) => {
+        if (confirm('Tolak usulan ini?')) {
+            router.put(route('usulan-inovasi.reject', id));
+        }
+    };
 
     const handleDelete = (id) => {
         if (confirm('Apakah Anda yakin ingin menghapus usulan ini?')) {
@@ -48,18 +60,38 @@ export default function List({ daftarUsulanInovasi }) {
                                     <td className="px-4 py-2 border">{item.status}</td>
                                     <td className="px-4 py-2 border text-center">
                                         <div className="flex justify-center items-center gap-2">
-                                            <Link
-                                                href={route('usulan-inovasi.edit', item.id)}
-                                                className="text-blue-600 hover:text-blue-800"
-                                            >
-                                                <FiEdit />
-                                            </Link>
-                                            <button
-                                                onClick={() => handleDelete(item.id)}
-                                                className="text-red-600 hover:text-red-800"
-                                            >
-                                                <FiTrash2 />
-                                            </button>
+                                            {auth.user?.roles?.some(role => role.name === 'admin') && (
+                                                <>
+                                                    <button
+                                                        onClick={() => handleApprove(item.id)}
+                                                        className="text-green-600 hover:text-green-800 text-lg font-bold"
+                                                    >
+                                                        <FiCheck />
+                                                    </button>
+                                                    <button
+                                                        onClick={() => handleReject(item.id)}
+                                                        className="text-red-600 hover:text-red-800 text-lg font-bold"
+                                                    >
+                                                        <FiX />
+                                                    </button>
+                                                </>
+                                            )}
+                                            {auth.user?.roles?.some(role => role.name === 'user') && (
+                                                <>
+                                                <Link
+                                                    href={route('usulan-inovasi.edit', item.id)}
+                                                    className="text-blue-600 hover:text-blue-800"
+                                                >
+                                                    <FiEdit />
+                                                </Link>
+                                                <button
+                                                    onClick={() => handleDelete(item.id)}
+                                                    className="text-red-600 hover:text-red-800"
+                                                    >
+                                                    <FiTrash2 />
+                                                </button>
+                                            </>
+                                            )}
                                         </div>
                                     </td>
                                 </tr>
