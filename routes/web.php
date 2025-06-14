@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PelaporanPembangunanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsulanInovasiController;
 use Illuminate\Foundation\Application;
@@ -35,6 +36,19 @@ Route::prefix('/usulan-inovasi')->name('usulan-inovasi.')->group(function() {
         Route::get('/{usulanInovasi}/edit', [UsulanInovasiController::class, 'edit'])->name('edit');
         Route::get('/{usulanInovasi}/detail', [UsulanInovasiController::class, 'show'])->name('show');
         Route::get('/search', [UsulanInovasiController::class, 'search'])->name('search');
+    });
+});
+
+Route::prefix('/pelaporan-pembangunan')->name('pelaporan-pembangunan.')->group(function() {
+    Route::group(['middleware' => ['auth']], function() {
+        Route::get('/', [PelaporanPembangunanController::class, 'index'])->name('index');
+        Route::get('/create', [PelaporanPembangunanController::class, 'create'])->name('create');
+        Route::post('/', [PelaporanPembangunanController::class, 'store'])->name('store');
+        Route::put('/{pelaporanPembangunan}', [PelaporanPembangunanController::class, 'update'])->name('update');
+        Route::delete('/{pelaporanPembangunan}', [PelaporanPembangunanController::class, 'destroy'])->name('destroy');
+        Route::get('/{pelaporanPembangunan}/edit', [PelaporanPembangunanController::class, 'edit'])->name('edit');
+        Route::get('/{pelaporanPembangunan}/detail', [PelaporanPembangunanController::class, 'show'])->name('show');
+        Route::get('/search', [PelaporanPembangunanController::class, 'search'])->name('search');
     });
 });
 
