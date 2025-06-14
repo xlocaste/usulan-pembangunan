@@ -1,8 +1,8 @@
 import React from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, usePage, router, Link } from '@inertiajs/react';
-import { FaEdit, FaTrash, FaPlus } from 'react-icons/fa';
 import PrimaryButton from '@/Components/PrimaryButton';
+import { FiEdit, FiPlus, FiTrash2 } from 'react-icons/fi';
 
 export default function List({ daftarUsulanInovasi }) {
     const { auth } = usePage().props;
@@ -20,8 +20,7 @@ export default function List({ daftarUsulanInovasi }) {
             <div className="mb-4 flex justify-end">
                 <Link href={route('usulan-inovasi.create')}>
                     <PrimaryButton className="flex items-center gap-2">
-                        <FaPlus />
-                        Tambah Usulan Inovasi
+                        <FiPlus />Tambah Usulan Inovasi
                     </PrimaryButton>
                 </Link>
             </div>
@@ -53,13 +52,13 @@ export default function List({ daftarUsulanInovasi }) {
                                                 href={route('usulan-inovasi.edit', item.id)}
                                                 className="text-blue-600 hover:text-blue-800"
                                             >
-                                                <FaEdit />
+                                                <FiEdit />
                                             </Link>
                                             <button
                                                 onClick={() => handleDelete(item.id)}
                                                 className="text-red-600 hover:text-red-800"
                                             >
-                                                <FaTrash />
+                                                <FiTrash2 />
                                             </button>
                                         </div>
                                     </td>

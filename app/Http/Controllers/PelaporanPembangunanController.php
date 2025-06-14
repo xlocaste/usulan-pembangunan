@@ -7,6 +7,7 @@ use App\Http\Requests\PelaporanPembangunan\UpdateRequest;
 use App\Models\PelaporanPembangunan;
 use App\Models\Wilayah;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class PelaporanPembangunanController extends Controller
@@ -57,5 +58,12 @@ class PelaporanPembangunanController extends Controller
             'pelaporanPembangunan' => $pelaporanPembangunan,
             'wilayahList' => Wilayah::all(),
         ]);
+    }
+
+    public function destroy(PelaporanPembangunan $pelaporanPembangunan)
+    {
+        $pelaporanPembangunan->delete();
+
+        return Redirect::route('pelaporan-pembangunan.index')->with('message', 'Data berhasil dihapus');
     }
 }
