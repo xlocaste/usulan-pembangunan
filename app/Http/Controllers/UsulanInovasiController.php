@@ -32,6 +32,15 @@ class UsulanInovasiController extends Controller
         ]);
     }
 
+    public function list()
+    {
+        $daftarUsulanInovasi = UsulanInovasi::with('kategori', 'wilayah')->get();
+
+        return inertia('Form/UsulanInovasi/List', [
+            'daftarUsulanInovasi' => $daftarUsulanInovasi,
+        ]);
+    }
+
     public function store(StoreRequest $request)
     {
         UsulanInovasi::create([

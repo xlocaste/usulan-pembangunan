@@ -1,0 +1,48 @@
+import React from 'react';
+import DashboardLayout from '@/Layouts/DashboardLayout';
+import { Head } from '@inertiajs/react';
+
+export default function List({ daftarUsulanInovasi }) {
+    return (
+        <DashboardLayout>
+            <Head title="Daftar Usulan Inovasi" />
+
+            <h1 className="text-xl font-bold mb-6">Daftar Semua Usulan Inovasi</h1>
+
+            <div className="overflow-x-auto">
+                <table className="w-full text-sm text-left border border-gray-300 shadow">
+                    <thead className="text-white">
+                        <tr>
+                            <th className="px-4 py-2 border">No</th>
+                            <th className="px-4 py-2 border">Judul</th>
+                            <th className="px-4 py-2 border">Deskripsi</th>
+                            <th className="px-4 py-2 border">Status</th>
+                            <th className="px-4 py-2 border">Wilayah</th>
+                            <th className="px-4 py-2 border">Kategori</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {daftarUsulanInovasi.length > 0 ? (
+                            daftarUsulanInovasi.map((item, index) => (
+                                <tr key={item.id}>
+                                    <td className="px-4 py-2 border">{index + 1}</td>
+                                    <td className="px-4 py-2 border">{item.judul}</td>
+                                    <td className="px-4 py-2 border">{item.deskripsi}</td>
+                                    <td className="px-4 py-2 border capitalize">{item.status}</td>
+                                    <td className="px-4 py-2 border">{item.wilayah?.nama || '-'}</td>
+                                    <td className="px-4 py-2 border">{item.kategori?.nama || '-'}</td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="6" className="text-center py-4 text-gray-500">
+                                    Belum ada data usulan inovasi.
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
+        </DashboardLayout>
+    );
+}

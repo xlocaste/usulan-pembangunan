@@ -11,7 +11,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                         Aplikasi ini dibuat menggunakan Laravel {laravelVersion} dan PHP {phpVersion}.
                     </p>
 
-                    <div className="flex justify-center gap-4 mb-12">
+                    <div className="flex justify-center gap-4 mb-4">
                         {auth?.user ? (
                             <Link
                                 href={route('dashboard')}
@@ -35,6 +35,35 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                 </Link>
                             </>
                         )}
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                        <Link
+                            href={route('form.usulan-inovasi.list')}
+                            className="inline-flex items-center justify-center bg-white/20 backdrop-blur-lg rounded-xl p-4 shadow-md text-white font-bold hover:bg-white/30 hover:ring-2 hover:ring-white transition duration-200"
+                        >
+                            Usulan Inovasi
+                        </Link>
+
+                        <Link
+                            href={route('form.verifikasi-usulan-inovasi.list')} // nama route-nya sama dengan usulan inovasi, bisa dikoreksi jika perlu dibedakan
+                            className="inline-flex items-center justify-center bg-white/20 backdrop-blur-lg rounded-xl p-4 shadow-md text-white font-bold hover:bg-white/30 hover:ring-2 hover:ring-white transition duration-200"
+                        >
+                            Verifikasi Usulan Inovasi
+                        </Link>
+
+                        <Link
+                            href={route('form.pelaporan-pembangunan.list')}
+                            className="inline-flex items-center justify-center bg-white/20 backdrop-blur-lg rounded-xl p-4 shadow-md text-white font-bold hover:bg-white/30 hover:ring-2 hover:ring-white transition duration-200"
+                        >
+                            Pelaporan Pembangunan
+                        </Link>
+
+                        <Link
+                            href={route('form.verifikasi-pelaporan-pembangunan.list')}
+                            className="inline-flex items-center justify-center bg-white/20 backdrop-blur-lg rounded-xl p-4 shadow-md text-white font-bold hover:bg-white/30 hover:ring-2 hover:ring-white transition duration-200"
+                        >
+                            Verifikasi Pelaporan Pembangunan
+                        </Link>
                     </div>
 
                     <footer className="text-sm text-gray-500 dark:text-gray-400">

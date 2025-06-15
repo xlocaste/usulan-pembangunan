@@ -16,7 +16,7 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('welcome');;
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -84,6 +84,22 @@ Route::prefix('/verifikasi-pelaporan-pembangunan')->name('verifikasi-pelaporan-p
         Route::get('/{verifikasiPP}/detail', [VerifikasiPelaporanPembangunanController::class, 'show'])->name('show');
         Route::get('/search', [VerifikasiPelaporanPembangunanController::class, 'search'])->name('search');
     });
+});
+
+Route::prefix('/form/usulan-inovasi')->name('form.usulan-inovasi.')->group(function() {
+    Route::get('/', [UsulanInovasiController::class, 'list'])->name('list');
+});
+
+Route::prefix('/form/verifikasi-usulan-inovasi')->name('form.verifikasi-usulan-inovasi.')->group(function() {
+    Route::get('/', [VerifikasiUsulanInovasiController::class, 'list'])->name('list');
+});
+
+Route::prefix('/form/pelaporan-pembangunan')->name('form.pelaporan-pembangunan.')->group(function() {
+    Route::get('/', [PelaporanPembangunanController::class, 'list'])->name('list');
+});
+
+Route::prefix('/form/verifikasi-pelaporan-pembangunan')->name('form.verifikasi-pelaporan-pembangunan.')->group(function() {
+    Route::get('/', [VerifikasiPelaporanPembangunanController::class, 'list'])->name('list');
 });
 
 require __DIR__.'/auth.php';
