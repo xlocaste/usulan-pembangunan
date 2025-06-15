@@ -29,7 +29,11 @@ class VerifikasiUsulanInovasiController extends Controller
 
     public function list()
     {
-        $daftarVerifikasiUI = VerifikasiUsulanInovasi::with('usulanInovasi.kategori', 'usulanInovasi.wilayah')->get();
+        $daftarVerifikasiUI = VerifikasiUsulanInovasi::with('usulanInovasi.kategori', 'usulanInovasi.wilayah')
+            ->whereHas('usulanInovasi', function ($query) {
+                $query->whereIn('status', ['diterima', 'ditolak']);
+            })
+            ->get();
 
         return inertia('Form/VerifikasiUsulanInovasi/List', [
             'daftarVerifikasiUI' => $daftarVerifikasiUI,

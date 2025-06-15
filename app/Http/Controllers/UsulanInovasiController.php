@@ -34,7 +34,9 @@ class UsulanInovasiController extends Controller
 
     public function list()
     {
-        $daftarUsulanInovasi = UsulanInovasi::with('kategori', 'wilayah')->get();
+        $daftarUsulanInovasi = UsulanInovasi::with('kategori', 'wilayah')
+            ->where('status', 'diajukan')
+            ->get();
 
         return inertia('Form/UsulanInovasi/List', [
             'daftarUsulanInovasi' => $daftarUsulanInovasi,
