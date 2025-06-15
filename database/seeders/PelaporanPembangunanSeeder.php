@@ -15,6 +15,7 @@ class PelaporanPembangunanSeeder extends Seeder
         DB::table('pelaporan_pembangunan')->insert([
             [
                 'wilayah_id' => 1,
+                'user_id' => 1,
                 'judul' => 'Jalan Berlubang di RT 05',
                 'deskripsi' => 'Jalan utama di RT 05 rusak parah dan membahayakan pengendara.',
                 'status' => 'diajukan',
@@ -23,6 +24,7 @@ class PelaporanPembangunanSeeder extends Seeder
             ],
             [
                 'wilayah_id' => 1,
+                'user_id' => 2,
                 'judul' => 'Saluran Drainase Tersumbat',
                 'deskripsi' => 'Saluran air di RW 02 tersumbat, menyebabkan genangan air saat hujan.',
                 'status' => 'diterima',
@@ -31,6 +33,7 @@ class PelaporanPembangunanSeeder extends Seeder
             ],
             [
                 'wilayah_id' => 1,
+                'user_id' => 2,
                 'judul' => 'Lampu Jalan Mati',
                 'deskripsi' => 'Beberapa lampu jalan di sepanjang Jalan Melati tidak berfungsi.',
                 'status' => 'ditolak',

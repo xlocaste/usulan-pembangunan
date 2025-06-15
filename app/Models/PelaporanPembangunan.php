@@ -16,6 +16,7 @@ class PelaporanPembangunan extends Model
         'judul',
         'deskripsi',
         'status',
+        'user_id',
     ];
 
     public function wilayah()

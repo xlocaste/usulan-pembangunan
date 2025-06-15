@@ -39,7 +39,8 @@ class UsulanInovasiController extends Controller
             'wilayah_id' => $request->wilayah_id,
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
-            'status' => 'diajukan'
+            'status' => 'diajukan',
+            'user_id' => auth()->id(),
         ]);
 
         return redirect()->route('usulan-inovasi.index');
@@ -60,7 +61,8 @@ class UsulanInovasiController extends Controller
             'wilayah_id' => $request->wilayah_id,
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
-            'status' => 'diajukan'
+            'status' => 'diajukan',
+            'user_id' => auth()->id(),
         ]);
 
         return redirect()->route('usulan-inovasi.index');

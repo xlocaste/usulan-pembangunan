@@ -14,19 +14,27 @@ class PelaporanPembangunanController extends Controller
 {
     public function index()
     {
-        $daftarPelaporanPembangunan = PelaporanPembangunan::with('wilayah')->get();
+        $user = auth()->user();
+
+        $query = PelaporanPembangunan::with('wilayah');
+
+        if (!$user->hasRole('admin')) {
+            $query->where('user_id', $user->id);
+        }
+
+        $daftarPelaporanPembangunan = $query->get();
 
         return inertia('PelaporanPembangunan/List', [
             'daftarPelaporanPembangunan' => $daftarPelaporanPembangunan,
         ]);
     }
-
     public function store(StoreRequest $request)
     {
         PelaporanPembangunan::create([
             'wilayah_id' => $request->wilayah_id,
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
+            'user_id' => auth()->id(),
             'status' => 'diajukan'
         ]);
 
@@ -46,6 +54,7 @@ class PelaporanPembangunanController extends Controller
             'wilayah_id' => $request->wilayah_id,
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
+            'user_id' => auth()->id(),
             'status' => 'diajukan'
         ]);
 
