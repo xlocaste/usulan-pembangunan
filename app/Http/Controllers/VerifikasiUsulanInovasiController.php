@@ -9,11 +9,18 @@ class VerifikasiUsulanInovasiController extends Controller
 {
     public function index()
     {
-        $daftarVerifikasi = VerifikasiUsulanInovasi::with('usulanInovasi.kategori', 'usulanInovasi.wilayah')
-            ->whereHas('usulanInovasi', function ($query) {
-                $query->whereIn('status', ['diterima', 'ditolak']);
-            })
-            ->get();
+        $user = auth()->user();
+
+        $query = VerifikasiUsulanInovasi::with('usulanInovasi.kategori', 'usulanInovasi.wilayah')
+            ->whereHas('usulanInovasi', function ($q) use ($user) {
+                $q->whereIn('status', ['diterima', 'ditolak']);
+
+                if ($user->hasRole('user')) {
+                    $q->where('user_id', $user->id);
+                }
+            });
+
+        $daftarVerifikasi = $query->get();
 
         return inertia('VerifikasiUsulanInovasi/List', [
             'daftarVerifikasi' => $daftarVerifikasi,

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('kategori_id');
             $table->unsignedBigInteger('wilayah_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('judul');
             $table->text('deskripsi');
             $table->enum('status', ['diajukan', 'diterima', 'ditolak'])->default('diajukan');
@@ -22,6 +23,7 @@ return new class extends Migration
 
             $table->foreign('kategori_id')->references('id')->on('kategori_usulan');
             $table->foreign('wilayah_id')->references('id')->on('wilayah');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

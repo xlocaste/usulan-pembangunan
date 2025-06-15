@@ -16,9 +16,16 @@ class UsulanInovasiController extends Controller
 {
     public function index()
     {
-        $daftarUsulanInovasi = UsulanInovasi::with('kategori', 'wilayah')
-            ->where('status', 'diajukan')
-            ->get();
+        $user = auth()->user();
+
+        $query = UsulanInovasi::with('kategori', 'wilayah')
+            ->where('status', 'diajukan');
+
+        if ($user->hasRole('user')) {
+            $query->where('user_id', $user->id);
+        }
+
+        $daftarUsulanInovasi = $query->get();
 
         return inertia('UsulanInovasi/List', [
             'daftarUsulanInovasi' => $daftarUsulanInovasi,

@@ -16,15 +16,17 @@ class UsulanInovasiSeeder extends Seeder
             [
                 'kategori_id' => 1,
                 'wilayah_id' => 1,
+                'user_id' => 2,
                 'judul' => 'Peningkatan Jalan Desa',
                 'deskripsi' => 'Usulan peningkatan kualitas jalan desa untuk mendukung aksesibilitas warga.',
-                'status' => 'diajukan', // sebelumnya 'Menunggu Verifikasi'
+                'status' => 'diajukan',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'kategori_id' => 2,
                 'wilayah_id' => 1,
+                'user_id' => 2,
                 'judul' => 'Pembangunan Perpustakaan Digital',
                 'deskripsi' => 'Inovasi membangun perpustakaan digital untuk meningkatkan minat baca pelajar.',
                 'status' => 'diterima',
@@ -34,6 +36,7 @@ class UsulanInovasiSeeder extends Seeder
             [
                 'kategori_id' => 3,
                 'wilayah_id' => 1,
+                'user_id' => 2,
                 'judul' => 'Posyandu Pintar',
                 'deskripsi' => 'Digitalisasi data kesehatan balita di Posyandu menggunakan aplikasi mobile.',
                 'status' => 'ditolak',
