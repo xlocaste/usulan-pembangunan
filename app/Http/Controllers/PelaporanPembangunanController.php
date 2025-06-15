@@ -29,6 +29,18 @@ class PelaporanPembangunanController extends Controller
             'daftarPelaporanPembangunan' => $daftarPelaporanPembangunan,
         ]);
     }
+
+    public function list()
+    {
+        $daftarPP = PelaporanPembangunan::with('wilayah')
+            ->where('status', 'diajukan')
+            ->get();
+
+        return inertia('Form/PelaporanPembangunan/List', [
+            'daftarPelaporanPembangunan' => $daftarPP,
+        ]);
+    }
+
     public function store(StoreRequest $request)
     {
         PelaporanPembangunan::create([
