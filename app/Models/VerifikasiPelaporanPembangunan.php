@@ -19,9 +19,4 @@ class VerifikasiPelaporanPembangunan extends Model
     {
         return $this->belongsTo(PelaporanPembangunan::class);
     }
-
-    public function user()
-{
-    return $this->belongsTo(User::class);
-}
 }
