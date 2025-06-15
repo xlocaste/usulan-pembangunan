@@ -26,4 +26,17 @@ class VerifikasiPelaporanPembangunanController extends Controller
             'daftarVerifikasi' => $daftarVerifikasi,
         ]);
     }
+
+    public function list()
+    {
+        $daftarVerifikasiPP = VerifikasiPelaporanPembangunan::with(['pelaporanPembangunan.wilayah', 'pelaporanPembangunan.user'])
+            ->whereHas('pelaporanPembangunan', function ($query) {
+                $query->whereIn('status', ['diterima', 'ditolak']);
+            })
+            ->get();
+
+        return inertia('Form/VerifikasiPelaporanPembangunan/List', [
+            'daftarVerifikasiPP' => $daftarVerifikasiPP,
+        ]);
+    }
 }
