@@ -41,12 +41,6 @@ export default function AuthenticatedLayout({ header, children }) {
                         Verifikasi Pelaporan Pembangunan
                     </Link>
                     <Link
-                        href={route('dashboard')}
-                        className="block px-4 py-2 rounded hover:bg-gray-200"
-                    >
-                        Kategori Usulan
-                    </Link>
-                    <Link
                         href={route('logout')}
                         method="post"
                         as="button"
