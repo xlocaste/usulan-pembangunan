@@ -26,4 +26,13 @@ class VerifikasiUsulanInovasiController extends Controller
             'daftarVerifikasi' => $daftarVerifikasi,
         ]);
     }
+
+    public function list()
+    {
+        $daftarVerifikasiUI = VerifikasiUsulanInovasi::with('usulanInovasi.kategori', 'usulanInovasi.wilayah')->get();
+
+        return inertia('Form/VerifikasiUsulanInovasi/List', [
+            'daftarVerifikasiUI' => $daftarVerifikasiUI,
+        ]);
+    }
 }
