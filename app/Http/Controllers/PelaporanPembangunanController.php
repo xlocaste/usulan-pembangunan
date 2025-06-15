@@ -16,7 +16,8 @@ class PelaporanPembangunanController extends Controller
     {
         $user = auth()->user();
 
-        $query = PelaporanPembangunan::with('wilayah');
+        $query = PelaporanPembangunan::with('wilayah')
+            ->where('status', 'diajukan');
 
         if (!$user->hasRole('admin')) {
             $query->where('user_id', $user->id);

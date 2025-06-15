@@ -3,6 +3,7 @@
 use App\Http\Controllers\PelaporanPembangunanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsulanInovasiController;
+use App\Http\Controllers\VerifikasiPelaporanPembangunanController;
 use App\Http\Controllers\VerifikasiUsulanInovasiController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -55,6 +56,7 @@ Route::prefix('/verifikasi-usulan-inovasi')->name('verifikasi-usulan-inovasi.')-
     });
 });
 
+
 Route::prefix('/pelaporan-pembangunan')->name('pelaporan-pembangunan.')->group(function() {
     Route::group(['middleware' => ['auth']], function() {
         Route::get('/', [PelaporanPembangunanController::class, 'index'])->name('index');
@@ -67,6 +69,20 @@ Route::prefix('/pelaporan-pembangunan')->name('pelaporan-pembangunan.')->group(f
         Route::get('/{pelaporanPembangunan}/edit', [PelaporanPembangunanController::class, 'edit'])->name('edit');
         Route::get('/{pelaporanPembangunan}/detail', [PelaporanPembangunanController::class, 'show'])->name('show');
         Route::get('/search', [PelaporanPembangunanController::class, 'search'])->name('search');
+    });
+});
+
+
+Route::prefix('/verifikasi-pelaporan-pembangunan')->name('verifikasi-pelaporan-pembangunan.')->group(function() {
+    Route::group(['middleware' => ['auth']], function() {
+        Route::get('/', [VerifikasiPelaporanPembangunanController::class, 'index'])->name('index');
+        Route::get('/create', [VerifikasiPelaporanPembangunanController::class, 'create'])->name('create');
+        Route::post('/', [VerifikasiPelaporanPembangunanController::class, 'store'])->name('store');
+        Route::put('/{verifikasiPP}', [VerifikasiPelaporanPembangunanController::class, 'update'])->name('update');
+        Route::delete('/{verifikasiPP}', [VerifikasiPelaporanPembangunanController::class, 'destroy'])->name('destroy');
+        Route::get('/{verifikasiPP}/edit', [VerifikasiPelaporanPembangunanController::class, 'edit'])->name('edit');
+        Route::get('/{verifikasiPP}/detail', [VerifikasiPelaporanPembangunanController::class, 'show'])->name('show');
+        Route::get('/search', [VerifikasiPelaporanPembangunanController::class, 'search'])->name('search');
     });
 });
 

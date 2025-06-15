@@ -23,4 +23,18 @@ class PelaporanPembangunan extends Model
     {
         return $this->belongsTo(Wilayah::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    protected static function booted()
+    {
+        static::created(function ($pelaporan) {
+            VerifikasiPelaporanPembangunan::create([
+                'pelaporan_pembangunan_id' => $pelaporan->id,
+            ]);
+        });
+    }
 }

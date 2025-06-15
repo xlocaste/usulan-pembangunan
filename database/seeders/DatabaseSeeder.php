@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             UsulanInovasiSeeder::class,
             PelaporanPembangunanSeeder::class,
             VerifikasiUsulanInovasiSeeder::class,
+            VerifikasiPelaporanPembangunanSeeder::class,
         ]);
     }
 }
