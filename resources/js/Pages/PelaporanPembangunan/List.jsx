@@ -1,11 +1,19 @@
 import React from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, Link, usePage, router } from '@inertiajs/react';
-import { FiPlus, FiEdit, FiTrash2 } from 'react-icons/fi';
+import { FiPlus, FiEdit, FiTrash2, FiCheck, FiX } from 'react-icons/fi';
 import PrimaryButton from '@/Components/PrimaryButton';
 
 export default function List({ daftarPelaporanPembangunan }) {
     const { auth } = usePage().props;
+
+    const handleApprove = (id) => {
+        router.put(route('pelaporan-pembangunan.approve', id));
+    };
+
+    const handleReject = (id) => {
+        router.put(route('pelaporan-pembangunan.reject', id));
+    };
 
     const handleDelete = (id) => {
         if (confirm('Yakin ingin menghapus laporan ini?')) {
@@ -51,18 +59,41 @@ export default function List({ daftarPelaporanPembangunan }) {
                                     <td className="px-4 py-2 border">{item.deskripsi}</td>
                                     <td className="px-4 py-2 border text-center">
                                         <div className="flex items-center justify-center gap-2">
-                                            <Link
-                                                href={route('pelaporan-pembangunan.edit', item.id)}
-                                                className="text-blue-600 hover:text-blue-800"
-                                            >
-                                                <FiEdit />
-                                            </Link>
-                                            <button
-                                                onClick={() => handleDelete(item.id)}
-                                                className="text-red-600 hover:text-red-800"
-                                            >
-                                                <FiTrash2 />
-                                            </button>
+                                            {auth.user?.roles?.some(role => role.name === 'admin') && (
+                                                <>
+                                                    <button
+                                                        onClick={() => handleApprove(item.id)}
+                                                        className="text-green-600 hover:text-green-800 font-bold text-lg"
+                                                        title="Setujui"
+                                                    >
+                                                        <FiCheck />
+                                                    </button>
+                                                    <button
+                                                        onClick={() => handleReject(item.id)}
+                                                        className="text-red-600 hover:text-red-800 font-bold text-lg"
+                                                        title="Tolak"
+                                                    >
+                                                        <FiX />
+                                                    </button>
+                                                </>
+                                            )}
+                                            {auth.user?.roles?.some(role => role.name === 'user') && (
+                                                <>
+                                                    <Link
+                                                        href={route('pelaporan-pembangunan.edit', item.id)}
+                                                        className="text-blue-600 hover:text-blue-800"
+                                                    >
+                                                        <FiEdit />
+                                                    </Link>
+                                                    <button
+                                                        onClick={() => handleDelete(item.id)}
+                                                        className="text-red-600 hover:text-red-800"
+                                                    >
+                                                        <FiTrash2 />
+                                                    </button>
+                                                </>
+                                            )}
+
                                         </div>
                                     </td>
                                 </tr>

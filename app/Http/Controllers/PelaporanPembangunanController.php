@@ -75,4 +75,20 @@ class PelaporanPembangunanController extends Controller
 
         return Redirect::route('pelaporan-pembangunan.index')->with('message', 'Data berhasil dihapus');
     }
+
+    public function approve($pelaporanPembangunan)
+    {
+        $pelaporan = PelaporanPembangunan::findOrFail($pelaporanPembangunan);
+        $pelaporan->update(['status' => 'diterima']);
+
+        return redirect()->back()->with('success', 'Pelaporan disetujui.');
+    }
+
+    public function reject($pelaporanPembangunan)
+    {
+        $pelaporan = PelaporanPembangunan::findOrFail($pelaporanPembangunan);
+        $pelaporan->update(['status' => 'ditolak']);
+
+        return redirect()->back()->with('success', 'Pelaporan ditolak.');
+    }
 }

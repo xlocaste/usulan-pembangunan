@@ -61,6 +61,8 @@ Route::prefix('/pelaporan-pembangunan')->name('pelaporan-pembangunan.')->group(f
         Route::get('/create', [PelaporanPembangunanController::class, 'create'])->name('create');
         Route::post('/', [PelaporanPembangunanController::class, 'store'])->name('store');
         Route::put('/{pelaporanPembangunan}', [PelaporanPembangunanController::class, 'update'])->name('update');
+        Route::put('/{pelaporanPembangunan}/approve', [PelaporanPembangunanController::class, 'approve'])->name('approve');
+        Route::put('/{pelaporanPembangunan}/reject', [PelaporanPembangunanController::class, 'reject'])->name('reject');
         Route::delete('/{pelaporanPembangunan}', [PelaporanPembangunanController::class, 'destroy'])->name('destroy');
         Route::get('/{pelaporanPembangunan}/edit', [PelaporanPembangunanController::class, 'edit'])->name('edit');
         Route::get('/{pelaporanPembangunan}/detail', [PelaporanPembangunanController::class, 'show'])->name('show');
