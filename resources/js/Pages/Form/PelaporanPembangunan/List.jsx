@@ -11,7 +11,7 @@ export default function List({ daftarPelaporanPembangunan }) {
 
             <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left border border-gray-300 shadow">
-                    <thead className="text-white">
+                    <thead>
                         <tr>
                             <th className="px-4 py-2 border">No</th>
                             <th className="px-4 py-2 border">Judul</th>
