@@ -1,3 +1,4 @@
+import ApplicationLogo from '@/Components/ApplicationLogo';
 import { Link, usePage } from '@inertiajs/react';
 import { FiHome, FiFileText, FiCheckCircle, FiBarChart2, FiLogOut, FiClipboard } from 'react-icons/fi';
 
@@ -7,8 +8,8 @@ export default function AuthenticatedLayout({ header, children }) {
     return (
         <div className="flex min-h-screen bg-gray-100">
             <aside className="fixed h-screen w-64 bg-white shadow-md">
-                <div className="p-4 border-b font-bold text-lg">
-                    Inovasi Bappeda
+                <div className='flex items-center justify-center w-full mt-4'>
+                    <ApplicationLogo className="h-20 w-auto"/>
                 </div>
                 <nav className="p-4 pl-0 space-y-2">
                     <Link

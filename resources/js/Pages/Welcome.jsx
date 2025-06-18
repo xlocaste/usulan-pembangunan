@@ -1,17 +1,20 @@
+import ApplicationLogo from '@/Components/ApplicationLogo';
 import { Head, Link } from '@inertiajs/react';
 
-export default function Welcome({ auth, laravelVersion, phpVersion }) {
+export default function Welcome({ auth }) {
     return (
         <>
             <Head title="Welcome" />
             <div className="min-h-screen bg-white text-gray-800 flex flex-col justify-center items-center px-6">
                 <div className="w-full max-w-2xl text-center">
-                    <h1 className="text-4xl font-bold mb-4">Selamat Datang di Aplikasi</h1>
-                    <p className="text-lg mb-8">
-                        Aplikasi ini dibuat menggunakan Laravel {laravelVersion} dan PHP {phpVersion}.
+                    <div className='flex items-center justify-center w-full mb-4'>
+                        <ApplicationLogo className='h-40 w-auto'/>
+                    </div>
+                    <p className="text-lg mb-6">
+                        Selamat datang di sistem informasi Usulan Inovasi Bappeda. Aplikasi ini dirancang untuk memfasilitasi proses pengusulan, pelaporan, dan verifikasi inovasi pembangunan secara digital, efisien, dan transparan.
                     </p>
 
-                    <div className="flex justify-center gap-4 mb-4">
+                    <div className="flex justify-center gap-4 mb-8">
                         {auth?.user ? (
                             <Link
                                 href={route('dashboard')}
@@ -68,7 +71,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                     </div>
 
                     <footer className="text-sm text-gray-500">
-                        &copy; {new Date().getFullYear()} Aplikasi Laravel — Laravel v{laravelVersion}, PHP v{phpVersion}
+                        &copy; {new Date().getFullYear()} Aplikasi Usulan Inovasi Bappeda
                     </footer>
                 </div>
             </div>
