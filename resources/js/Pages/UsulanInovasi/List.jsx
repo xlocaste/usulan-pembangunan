@@ -68,7 +68,7 @@ export default function List({ daftarUsulanInovasi }) {
                                                 Lihat File
                                             </a>
                                         ) : (
-                                            <span className="text-gray-400">-</span>
+                                            <span className="text-gray-400 italic">Tidak ada</span>
                                         )}
                                     </td>
                                     <td className="px-4 py-2 border">{item.wilayah?.nama}</td>
