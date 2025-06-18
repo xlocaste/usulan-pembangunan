@@ -9,8 +9,8 @@ use App\Models\UsulanInovasi;
 use App\Models\Wilayah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
-use Symfony\Component\CssSelector\Node\FunctionNode;
 
 class UsulanInovasiController extends Controller
 {
@@ -45,11 +45,18 @@ class UsulanInovasiController extends Controller
 
     public function store(StoreRequest $request)
     {
+        $filePath = null;
+
+        if ($request->hasFile('file')) {
+            $filePath = $request->file('file')->store('usulan-inovasi', 'public');
+        }
+
         UsulanInovasi::create([
             'kategori_id' => $request->kategori_id,
             'wilayah_id' => $request->wilayah_id,
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
+            'file' => $filePath,
             'status' => 'diajukan',
             'user_id' => auth()->id(),
         ]);
@@ -67,14 +74,24 @@ class UsulanInovasiController extends Controller
 
     public function update(UpdateRequest $request, UsulanInovasi $usulanInovasi)
     {
-        $usulanInovasi->update([
+        $data = [
             'kategori_id' => $request->kategori_id,
             'wilayah_id' => $request->wilayah_id,
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
             'status' => 'diajukan',
             'user_id' => auth()->id(),
-        ]);
+        ];
+
+        if ($request->hasFile('file')) {
+            if ($usulanInovasi->file && Storage::disk('public')->exists($usulanInovasi->file)) {
+                Storage::disk('public')->delete($usulanInovasi->file);
+            }
+
+            $data['file'] = $request->file('file')->store('usulan-inovasi', 'public');
+        }
+
+        $usulanInovasi->update($data);
 
         return redirect()->route('usulan-inovasi.index');
     }
@@ -90,6 +107,10 @@ class UsulanInovasiController extends Controller
 
     public function destroy(UsulanInovasi $usulanInovasi)
     {
+        if ($usulanInovasi->file && Storage::disk('public')->exists($usulanInovasi->file)) {
+            Storage::disk('public')->delete($usulanInovasi->file);
+        }
+
         $usulanInovasi->delete();
 
         return Redirect::route('usulan-inovasi.index')->with('message', 'Data berhasil dihapus');

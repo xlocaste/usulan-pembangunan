@@ -14,10 +14,11 @@ class UsulanInovasi extends Model
     protected $fillable = [
         'kategori_id',
         'wilayah_id',
+        'user_id',
         'judul',
+        'file',
         'deskripsi',
         'status',
-        'user_id',
     ];
 
     public function kategori()

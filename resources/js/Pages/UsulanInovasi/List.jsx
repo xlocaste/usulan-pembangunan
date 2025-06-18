@@ -44,6 +44,7 @@ export default function List({ daftarUsulanInovasi }) {
                             <th className="px-4 py-2 border">No</th>
                             <th className="px-4 py-2 border">Judul</th>
                             <th className="px-4 py-2 border">Kategori</th>
+                            <th className="px-4 py-2 border">File</th>
                             <th className="px-4 py-2 border">Wilayah</th>
                             <th className="px-4 py-2 border">Status</th>
                             <th className="px-4 py-2 border text-center">Aksi</th>
@@ -56,6 +57,20 @@ export default function List({ daftarUsulanInovasi }) {
                                     <td className="px-4 py-2 border">{index + 1}</td>
                                     <td className="px-4 py-2 border">{item.judul}</td>
                                     <td className="px-4 py-2 border">{item.kategori?.nama}</td>
+                                    <td className="px-4 py-2 border">
+                                        {item.file ? (
+                                            <a
+                                                href={`/storage/${item.file}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className=" text-blue-600 underline hover:text-blue-800"
+                                            >
+                                                Lihat File
+                                            </a>
+                                        ) : (
+                                            <span className="text-gray-400">-</span>
+                                        )}
+                                    </td>
                                     <td className="px-4 py-2 border">{item.wilayah?.nama}</td>
                                     <td className="px-4 py-2 border">{item.status}</td>
                                     <td className="px-4 py-2 border text-center">

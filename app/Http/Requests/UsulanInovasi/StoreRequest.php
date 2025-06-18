@@ -26,6 +26,7 @@ class StoreRequest extends FormRequest
             'wilayah_id' => ['required', 'exists:wilayah,id'],
             'judul' => ['required', 'string', 'max:255'],
             'deskripsi' => ['required', 'string'],
+            'file' => ['nullable', 'file', 'mimes:pdf,doc,docx,png,jpg,jpeg', 'max:2048'],
         ];
     }
 
@@ -44,6 +45,10 @@ class StoreRequest extends FormRequest
 
             'deskripsi.required' => 'Deskripsi harus diisi.',
             'deskripsi.string' => 'Deskripsi harus berupa teks.',
+
+            'file.file' => 'File yang diunggah tidak valid.',
+            'file.mimes' => 'Format file harus berupa PDF, DOC, DOCX, PNG, JPG, atau JPEG.',
+            'file.max' => 'Ukuran file maksimal 2MB.',
         ];
     }
 }

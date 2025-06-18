@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('wilayah_id');
             $table->unsignedBigInteger('user_id');
             $table->string('judul');
+            $table->string('file')->nullable();
             $table->text('deskripsi');
             $table->enum('status', ['diajukan', 'diterima', 'ditolak'])->default('diajukan');
             $table->timestamps();

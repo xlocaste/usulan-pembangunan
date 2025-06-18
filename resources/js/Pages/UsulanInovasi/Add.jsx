@@ -12,6 +12,7 @@ export default function Add({ kategoriList = [], wilayahList = [] }) {
         judul: '',
         deskripsi: '',
         status: 'diajukan',
+        file: null,
     });
 
     const handleSubmit = (e) => {
@@ -40,6 +41,16 @@ export default function Add({ kategoriList = [], wilayahList = [] }) {
                             ))}
                         </select>
                         {errors.kategori_id && <p className="text-red-500 text-sm">{errors.kategori_id}</p>}
+                    </div>
+
+                    <div>
+                        <label className="block mb-1 font-semibold">File Lampiran (Opsional)</label>
+                        <input
+                            type="file"
+                            onChange={(e) => setData('file', e.target.files[0])}
+                            className="w-full border px-3 py-2 rounded"
+                        />
+                        {errors.file && <p className="text-red-500 text-sm">{errors.file}</p>}
                     </div>
 
                     <div>
