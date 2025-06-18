@@ -11,11 +11,12 @@ export default function List({ daftarVerifikasiUI }) {
 
             <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left border border-gray-300 shadow">
-                    <thead className="text-white">
+                    <thead>
                         <tr>
                             <th className="px-4 py-2 border">No</th>
                             <th className="px-4 py-2 border">Judul</th>
                             <th className="px-4 py-2 border">Deskripsi</th>
+                            <th className="px-4 py-2 border">File Lampiran</th>
                             <th className="px-4 py-2 border">Status</th>
                             <th className="px-4 py-2 border">Wilayah</th>
                             <th className="px-4 py-2 border">Kategori</th>
@@ -28,6 +29,20 @@ export default function List({ daftarVerifikasiUI }) {
                                     <td className="px-4 py-2 border">{index + 1}</td>
                                     <td className="px-4 py-2 border">{item.usulan_inovasi?.judul || '-'}</td>
                                     <td className="px-4 py-2 border">{item.usulan_inovasi?.deskripsi || '-'}</td>
+                                    <td className="px-4 py-2 border">
+                                        {item.usulan_inovasi?.file ? (
+                                            <a
+                                                href={`/storage/${item.usulan_inovasi.file}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-blue-600 hover:underline"
+                                            >
+                                                Lihat File
+                                            </a>
+                                        ) : (
+                                            <span className="text-gray-400 italic">Tidak ada</span>
+                                        )}
+                                    </td>
                                     <td className="px-4 py-2 border capitalize">{item.usulan_inovasi?.status || '-'}</td>
                                     <td className="px-4 py-2 border">{item.usulan_inovasi?.wilayah?.nama || '-'}</td>
                                     <td className="px-4 py-2 border">{item.usulan_inovasi?.kategori?.nama || '-'}</td>
