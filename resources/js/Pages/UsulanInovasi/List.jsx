@@ -44,7 +44,7 @@ export default function List({ daftarUsulanInovasi }) {
                             <th className="px-4 py-2 border">No</th>
                             <th className="px-4 py-2 border">Judul</th>
                             <th className="px-4 py-2 border">Kategori</th>
-                            <th className="px-4 py-2 border">File</th>
+                            <th className="px-4 py-2 border">File Lampiran</th>
                             <th className="px-4 py-2 border">Wilayah</th>
                             <th className="px-4 py-2 border">Status</th>
                             <th className="px-4 py-2 border text-center">Aksi</th>
