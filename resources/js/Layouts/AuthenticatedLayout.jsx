@@ -1,4 +1,5 @@
 import { Link, usePage } from '@inertiajs/react';
+import { FiHome, FiFileText, FiCheckCircle, FiBarChart2, FiLogOut, FiClipboard } from 'react-icons/fi';
 
 export default function AuthenticatedLayout({ header, children }) {
     const user = usePage().props?.auth?.user;
@@ -9,44 +10,44 @@ export default function AuthenticatedLayout({ header, children }) {
                 <div className="p-4 border-b font-bold text-lg">
                     Inovasi Bappeda
                 </div>
-                <nav className="p-4 space-y-2">
+                <nav className="p-4 pl-0 space-y-2">
                     <Link
                         href={route('dashboard')}
-                        className="block px-4 py-2 rounded hover:bg-gray-200"
+                        className="flex items-center gap-2 px-4 py-2 rounded hover:bg-gray-200"
                     >
-                        Dashboard
+                        <FiHome /> Dashboard
                     </Link>
                     <Link
                         href={route('usulan-inovasi.index')}
-                        className="block px-4 py-2 rounded hover:bg-gray-200"
+                        className="flex items-center gap-2 px-4 py-2 rounded hover:bg-gray-200"
                     >
-                        Usulan Inovasi
+                        <FiFileText /> Usulan Inovasi
                     </Link>
                     <Link
                         href={route('verifikasi-usulan-inovasi.index')}
-                        className="block px-4 py-2 rounded hover:bg-gray-200"
+                        className="flex items-center gap-2 px-4 py-2 rounded hover:bg-gray-200"
                     >
-                        Verifikasi Usulan Inovasi
+                        <FiCheckCircle /> Verifikasi Usulan Inovasi
                     </Link>
                     <Link
                         href={route('pelaporan-pembangunan.index')}
-                        className="block px-4 py-2 rounded hover:bg-gray-200"
+                        className="flex items-center gap-2 px-4 py-2 rounded hover:bg-gray-200"
                     >
-                        Pelaporan Pembangunan
+                        <FiBarChart2 /> Pelaporan Pembangunan
                     </Link>
                     <Link
                         href={route('verifikasi-pelaporan-pembangunan.index')}
-                        className="block px-4 py-2 rounded hover:bg-gray-200"
+                        className="flex items-center gap-2 px-4 py-2 rounded hover:bg-gray-200"
                     >
-                        Verifikasi Pelaporan Pembangunan
+                        <FiClipboard /> Verifikasi Pelaporan
                     </Link>
                     <Link
                         href={route('logout')}
                         method="post"
                         as="button"
-                        className="block w-full text-left px-4 py-2 rounded hover:bg-red-100 text-red-600"
+                        className="flex items-center gap-2 w-full text-left px-4 py-2 rounded hover:bg-red-100 text-red-600"
                     >
-                        Logout
+                        <FiLogOut /> Logout
                     </Link>
                 </nav>
             </aside>
@@ -58,7 +59,9 @@ export default function AuthenticatedLayout({ header, children }) {
                     </div>
                 )}
 
-                <div className='mx-6 mb-6 bg-white p-6 rounded'>{children}</div>
+                <div className="mx-6 mb-6 bg-white p-6 rounded">
+                    {children}
+                </div>
             </main>
         </div>
     );
