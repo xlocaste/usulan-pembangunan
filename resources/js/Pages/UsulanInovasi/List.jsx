@@ -29,14 +29,6 @@ export default function List({ daftarUsulanInovasi }) {
         <AuthenticatedLayout user={auth?.user} header="Daftar Usulan Inovasi">
             <Head title="Usulan Inovasi" />
 
-            <div className="mb-4 flex justify-end">
-                <Link href={route('usulan-inovasi.create')}>
-                    <PrimaryButton className="flex items-center gap-2">
-                        <FiPlus />Tambah Usulan Inovasi
-                    </PrimaryButton>
-                </Link>
-            </div>
-
             <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left border border-gray-200">
                     <thead className="bg-gray-100 text-gray-700">

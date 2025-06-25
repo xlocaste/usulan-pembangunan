@@ -25,17 +25,6 @@ export default function List({ daftarPelaporanPembangunan }) {
         <AuthenticatedLayout user={auth.user} header="Daftar Pelaporan Pembangunan">
             <Head title="Pelaporan Pembangunan" />
 
-            <div className="flex justify-between items-center mb-4">
-                <h2 className="text-lg font-semibold">Pelaporan Pembangunan</h2>
-                <Link
-                    href={route('pelaporan-pembangunan.create')}
-                >
-                    <PrimaryButton className="flex items-center gap-2">
-                        <FiPlus /> Tambah Pelaporan
-                    </PrimaryButton>
-                </Link>
-            </div>
-
             <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left border border-gray-200">
                     <thead className="bg-gray-100 text-gray-700">
